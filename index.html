@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    	<meta charset="utf-8">
+    	<meta name="description" content="Your description goes here">
+    	<meta name="keywords" content="one, two, three">
+
+		<title>Rafart Web Synth</title>
+
+		<!-- external CSS link -->
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/style.css">
+
+		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	</head>
+	<body>
+
+		<div class="logo">
+			<img src="http://www.rafartmusic.com/wp-content/uploads/2016/06/LogoRafart2-verdoso.png" alt="Rafart Web Synth">
+		</div>
+
+		<section class="titleHead">
+			<h1>Web Polyphonic Synth</h1>
+			<h2>Play music with the keyboard or mouse<h2>
+			<span>Row 1: Keys 1-8</span>
+			<span>Row 2: Keys Q-I</span>
+			<span>Row 3: Keys A-K</span>
+			<span>Row 4: Keys Z-,</span>
+		</section>
+
+
+
+			<section class="grid clearfix">
+
+			<span id="Grid1" class="edge">A<span>1</span></span>
+			<span id="Grid2">Bb<span>2</span></span>
+			<span id="Grid3">B<span>3</span></span>
+			<span id="Grid4">C<span>4</span></span>
+			<span id="Grid5">C#<span>5</span></span>
+			<span id="Grid6">D<span>6</span></span>
+			<span id="Grid7">D#<span>7</span></span>
+			<span id="Grid8">E<span>8</span></span>
+			<span id="Grid9" class="edge">F<span>q</span></span>
+			<span id="Grid10">F#<span>w</span></span>
+			<span id="Grid11">G<span>e</span></span>
+			<span id="Grid12">G#<span>r</span></span>
+			<span id="Grid13">A<span>t</span></span>
+			<span id="Grid14">Bb<span>y</span></span>
+			<span id="Grid15">B<span>u</span></span>
+			<span id="Grid16">C<span>i</span></span>
+			<span id="Grid17" class="edge">C#<span>a</span></span>
+			<span id="Grid18">D<span>s</span></span>
+			<span id="Grid19">D#<span>d</span></span>
+			<span id="Grid20">E<span>f</span></span>
+			<span id="Grid21">F<span>g</span></span>
+			<span id="Grid22">F#<span>h</span></span>
+			<span id="Grid23">G<span>j</span></span>
+			<span id="Grid24">G#<span>k</span></span>
+			<span id="Grid25" class="edge">A<span>z</span></span>
+			<span id="Grid26">Bb<span>x</span></span>
+			<span id="Grid27">B<span>c</span></span>
+			<span id="Grid28">C<span>v</span></span>
+			<span id="Grid29">C#<span>b</span></span>
+			<span id="Grid30">D<span>n</span></span>
+			<span id="Grid31">D#<span>m</span></span>
+			<span id="Grid32">E<span>,</span></span>
+		</section>
+
+		<!-- Knobs -->
+		<div class="container">
+		  <div class="slider">
+		  <input type = "range" min="0" max="100" onchange="rangevalue.value=value"/>
+			<output id="rangevalue">50</output>
+		  </div>
+		 </div>
+
+
+		<!--Calling script-->
+		<script src="grid.js"></script>
+	</body>
+</html>
