@@ -1,3 +1,6 @@
+// This app is a grid interface to play a synth with your computer keyboard. It has polyphonic funcionality, meaning it keeps track of
+// different oscillators, allowing the user to play multiple notes at a time. Built with the Web Audio API
+
 var total = 0;
 var x=0;
 var pow12 = (1/12);
@@ -7,12 +10,11 @@ var initialFreq = 200;
 var initialVol = 0;
 var animIndex = 0;
 
-// const animationId = setInterval(lSize,200);
 //Polyphonic variables
 //Create 8 oscillators and connect them
 
 //oscillator
-//Audio stuff
+//Audio API 
 var AudioContext = window.AudioContext || window.webkitAudioContext;
 var audioCtx = new AudioContext();
 // create Oscillator and gain node
@@ -38,14 +40,15 @@ for (var i=0; i < 8; i++){
   oscillatorArray[i].type = 'sawtooth';
 }
 
+
 $(document).ready(function(){
-
-
+  
+//Fade in of logo
   $('img').fadeIn(4000);
   const animationId = setInterval(startAnimation,60);
 
+  //A button grid animation to start off the user experience
   function startAnimation(){
-
     if(animIndex > 31){
       $('.grid>span')[31].style.background = 'black';
       // $('h2').fadeIn(1000);
@@ -63,29 +66,23 @@ $(document).ready(function(){
   }
 });
 
-  // $( ".slider>input" ).on('click',function(){
-  //   console.log($('#rangevalue').innerHTML);
-  // });
-
+//Add Keydown listeners
 $( "body" ).keydown(function( event ) {
 
 
   //To allow different keys to be pressed without repeating the same when held down
   if (keyAllowed [event.which] === false) return;
   keyAllowed [event.which] = false;
+  
   //Assign key to key array at indexOsci
-
   var indexHere = arrayKeys.indexOf(0); //We look for the 0
   arrayKeys[indexHere]= event.which; //We assign the key number to that index
   console.log("Key: "+arrayKeys[indexHere]);
   //Use indexHere to start the oscilator
 
+  //switch that selects the individual keys. indexHere is to specify which oscillator of the array plays the note. In this way we can turn
+  //off that particular oscillator when the key is released.
   switch (event.which){
-
-    //Monophonic instrument. Cut down dound first
-    // document.getElementsByTagName('span').style.background = 'white';
-    // gainNode.gain.value = 0;
-
     case 49://1
     playWithKey(0,indexHere);
     break;
@@ -215,6 +212,7 @@ $( "body" ).keydown(function( event ) {
   }
   });
 
+  //Keyup listener
   $( "body" ).keyup(function( event ){
     //Allowed back
     keyAllowed [event.which] = true;
@@ -222,10 +220,9 @@ $( "body" ).keydown(function( event ) {
     //Looking for the deactivated oscillator
     var keyOff = event.which;
     var indexHere = arrayKeys.indexOf(keyOff);
-    console.log("Deactivate oscillator "+indexHere);
     arrayKeys[indexHere] = 0;
 
-
+      //switch to stop notes of particular keys
     switch(event.which){
       case 49://1
       stopPlayWithKey(0,indexHere);
@@ -355,11 +352,12 @@ $( "body" ).keydown(function( event ) {
     }
   });
 
-  //Function to allow multiple key strokes without repeating qhen held
+  //Function to allow multiple key strokes without repeating when held
 
-  //Functions for playing
+  //Functions for playing sound from oscillator. Takes a number that represents a semitone from the fundamental, and an oscillator
   function playWithKey(x,osci){
     $('.grid>span')[x].style.background = 'yellow';
+    //Calculate which frequency corresponds to that semitone number from the fundamental
     freq = 440*(Math.pow(a,x));
     oscillatorArray[osci].frequency.value = freq;
     gainNodeArray[osci].gain.value = 0.2;
@@ -368,6 +366,8 @@ $( "body" ).keydown(function( event ) {
     $('.grid>span')[x].style.background = 'black';
     gainNodeArray[osci].gain.value = 0;
   }
+
+//Functions to allow the user to play the notes with the mouse
 //Call function with particular cell name with mouse
 $(".grid>span").mousedown(
   function playCell(){
@@ -386,4 +386,3 @@ $(".grid>span").mouseup(
   }
 );
 
-//Funcitons for Slider
